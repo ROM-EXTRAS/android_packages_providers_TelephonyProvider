@@ -154,6 +154,7 @@ public class ProviderUtil {
     @Nullable
     public static String getSelectionBySubIds(Context context,
             @NonNull final UserHandle userHandle) {
+        Log.e(TAG, "Context: " + context.getPackageName());
         List<SubscriptionInfo> associatedSubscriptionsList = new ArrayList<>();
         SubscriptionManager subManager = context.getSystemService(SubscriptionManager.class);
         UserManager userManager = context.getSystemService(UserManager.class);
