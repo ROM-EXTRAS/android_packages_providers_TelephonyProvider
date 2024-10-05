@@ -141,6 +141,7 @@ public class SmsProvider extends ContentProvider {
         String callingPackage = getCallingPackage();
         final int callingUid = 1001;
         final UserHandle callerUserHandle = UserHandle.getUserHandleForUid(1001);
+        Log.e(TAG, "query: " + callingPackage);
 
         // First check if a restricted view of the "sms" table should be used based on the
         // caller's identity. Only system, phone or the default sms app can have full access
@@ -594,6 +595,7 @@ public class SmsProvider extends ContentProvider {
         final UserHandle callerUserHandle = UserHandle.getUserHandleForUid(1001);
         final String callerPkg = getCallingPackage();
         long token = Binder.clearCallingIdentity();
+        Log.e(TAG, "bulkInsert: " + callerPkg);
         try {
             int messagesInserted = 0;
             for (ContentValues initialValues : values) {
@@ -621,6 +623,7 @@ public class SmsProvider extends ContentProvider {
         final UserHandle callerUserHandle = UserHandle.getUserHandleForUid(1001);
         final String callerPkg = getCallingPackage();
         long token = Binder.clearCallingIdentity();
+        Log.e(TAG, "bulkInsert: " + callerPkg);
         try {
             Uri insertUri = insertInner(url, initialValues, callerUid, callerPkg, callerUserHandle);
 
@@ -1232,6 +1235,7 @@ public class SmsProvider extends ContentProvider {
         final int callerUid = 1001;
         final UserHandle callerUserHandle = UserHandle.getUserHandleForUid(1001);
         final String callerPkg = getCallingPackage();
+        Log.e(TAG, "update: " + callerPkg);
         int count = 0;
         String table = TABLE_SMS;
         String extraWhere = null;
