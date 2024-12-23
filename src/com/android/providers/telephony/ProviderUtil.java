@@ -62,8 +62,10 @@ public class ProviderUtil {
      * @return true if the caller is not system, or phone or default sms app, false otherwise
      */
     public static boolean isAccessRestricted(Context context, String packageName, int uid) {
-        return (!TelephonyPermissions.isSystemOrPhone(uid)
+        boolean b = (!TelephonyPermissions.isSystemOrPhone(uid)
                 && !SmsApplication.isDefaultSmsApplication(context, packageName));
+        Log.e(TAG, "DF: isAccessRestricted: " + packageName + " = " + b);
+        return (b);
     }
 
     /**
@@ -74,9 +76,11 @@ public class ProviderUtil {
      * @return true if we should set CREATOR, false otherwise
      */
     public static boolean shouldSetCreator(ContentValues values, int uid) {
-        return (!TelephonyPermissions.isSystemOrPhone(uid))
-                || (!values.containsKey(Telephony.Sms.CREATOR)
-                        && !values.containsKey(Telephony.Mms.CREATOR));
+        boolean b =
+        (!TelephonyPermissions.isSystemOrPhone(uid))
+        || (!values.containsKey(Telephony.Sms.CREATOR) && !values.containsKey(Telephony.Mms.CREATOR));
+        Log.e(TAG, "DF: shouldSetCreator: " + uid + " = " + b);
+        return (b);
     }
 
     /**
@@ -87,9 +91,11 @@ public class ProviderUtil {
      * @return true if we should remove CREATOR, false otherwise
      */
     public static boolean shouldRemoveCreator(ContentValues values, int uid) {
-        return (!TelephonyPermissions.isSystemOrPhone(uid))
+        boolean b = (!TelephonyPermissions.isSystemOrPhone(uid))
                 && (values.containsKey(Telephony.Sms.CREATOR)
                         || values.containsKey(Telephony.Mms.CREATOR));
+        Log.e(TAG, "DF: shouldRemoveCreator: " + uid + " = " + b);
+        return b;
     }
 
     /**
@@ -263,10 +269,12 @@ public class ProviderUtil {
      */
     public static boolean allowInteractingWithEntryOfSubscription(Context ctx,
             int subId, UserHandle callerUserHandle) {
-        return TelephonyPermissions
+        boolean b = TelephonyPermissions
                 .checkSubscriptionAssociatedWithUser(ctx, subId, callerUserHandle)
                 // INVALID_SUBSCRIPTION_ID represents backup restore.
                 || subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID;
+        Log.e(TAG, "allowInteractingWithEntryOfSubscription: " + b);
+        return true;
     }
 
     /**

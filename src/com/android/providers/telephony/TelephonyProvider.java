@@ -3649,9 +3649,10 @@ public class TelephonyProvider extends ContentProvider
 
     boolean isCallingFromSystemOrPhoneUid() {
         int callingUid = mInjector.binderGetCallingUid();
-        return TelephonyPermissions.isSystemOrPhone(callingUid)
-                // Allow ROOT for testing. ROOT can access underlying DB files anyways.
+        boolean b = TelephonyPermissions.isSystemOrPhone(callingUid)
                 || UserHandle.isSameApp(callingUid, Process.ROOT_UID);
+        Log.e(TAG, "DF: isCallingFromSystemOrPhoneUid: " + b + " uid: " + callingUid);
+        return b;
     }
 
     void ensureCallingFromSystemOrPhoneUid(String message) {

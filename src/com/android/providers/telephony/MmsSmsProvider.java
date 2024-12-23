@@ -84,7 +84,7 @@ public class MmsSmsProvider extends ContentProvider {
     private static final UriMatcher URI_MATCHER =
             new UriMatcher(UriMatcher.NO_MATCH);
     private static final String LOG_TAG = "MmsSmsProvider";
-    private static final boolean DEBUG = false;
+    private static final boolean DEBUG = true;
     private static final int MULTIPLE_THREAD_IDS_FOUND = TelephonyStatsLog
         .MMS_SMS_PROVIDER_GET_THREAD_ID_FAILED__FAILURE_CODE__FAILURE_MULTIPLE_THREAD_IDS_FOUND;
     private static final int FAILURE_FIND_OR_CREATE_THREAD_ID_SQL = TelephonyStatsLog

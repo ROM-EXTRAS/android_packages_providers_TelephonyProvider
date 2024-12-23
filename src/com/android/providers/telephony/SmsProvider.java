@@ -120,8 +120,10 @@ public class SmsProvider extends ContentProvider {
     }
 
     private boolean hasCalling() {
-        return getContext().getPackageManager().hasSystemFeature(
+        boolean b = getContext().getPackageManager().hasSystemFeature(
                 PackageManager.FEATURE_TELEPHONY_CALLING);
+        Log.e(TAG, "DF: hasCalling: " + b);
+        return b;
     }
 
     /**
