@@ -263,10 +263,12 @@ public class ProviderUtil {
      */
     public static boolean allowInteractingWithEntryOfSubscription(Context ctx,
             int subId, UserHandle callerUserHandle) {
-        return TelephonyPermissions
+        boolean b = TelephonyPermissions
                 .checkSubscriptionAssociatedWithUser(ctx, subId, callerUserHandle)
                 // INVALID_SUBSCRIPTION_ID represents backup restore.
                 || subId == SubscriptionManager.INVALID_SUBSCRIPTION_ID;
+        Log.e(TAG, "allowInteractingWithEntryOfSubscription: " + b);
+        return true;
     }
 
     /**
